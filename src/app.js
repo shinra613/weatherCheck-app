@@ -4,7 +4,9 @@ const hbs = require('hbs')
 const forecast = require('./utils/forecast')
 const geocode = require('./utils/geocode')
 
+
 const app = express()
+const port = process.env.PORT || 3000
 
 // define path for express config
 const pubDirPath = path.join(__dirname, '../public')
@@ -19,7 +21,7 @@ hbs.registerPartials(partialsPath)
 //setup for static dir
 app.use(express.static(pubDirPath))
 
-app.get('',(req,res)=>{
+app.get('/',(req,res)=>{
     res.render('index',{
         creator:'Akhil'
     })
@@ -78,7 +80,6 @@ app.get("/*", (req,res)=>{
 })
 
 
-
-app.listen('3000',()=>{
-    console.log("server is running")
+app.listen(port,()=>{
+    console.log('server is up on port '+port)
 })
